@@ -1,0 +1,21 @@
+@(task: Task, appform: Form[Application.AppForm])
+
+@main("仕事の詳細"){
+    <h1>仕事の詳細</h1>
+    <div class = "title">
+	  <h2>@task.title</h2>
+	</div>
+	<div class = "category">
+	  カテゴリ:@task.category
+	</div>
+    <div class = "introduction">　
+	  <h3>@task.introduction</h3>
+    </div>
+	<hr>
+	@helper.form(action = routes.Application.application){
+	@(helper.textarea(field = appform("message")))
+	  <input type = "hidden" name = "taskid" value = @task.taskid>
+	  <input type = "submit" value = "応募する">
+	}
+	</form>
+}

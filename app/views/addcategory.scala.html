@@ -1,0 +1,12 @@
+@(msg: String, form1: Form[models.RegisteredCategory])
+
+@main("カテゴリを登録するページのタイトル"){
+    <h1>カテゴリ登録</h1>
+    <p>@msg</p>
+
+    <form action = "/addcategory" method = "post">
+	  <input type = "text" name = "userid">
+	  <input type = "text" name = "category">
+	  <input type = "submit">
+	</form>  
+}

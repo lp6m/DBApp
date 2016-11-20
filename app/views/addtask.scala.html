@@ -1,0 +1,25 @@
+@(msg: String, form1: Form[models.Task],categories: List[String])
+
+@main("仕事発注"){
+    <h1>仕事発注フォーム</h1>
+    <p>@msg</p>
+
+    <form action = "/addtask" method = "post">
+	  
+	  title: <input type = "text" name = "title"><br>
+	  introduction: <input type = "text" name = "introduction"><br>
+  	  contractmoney: <input type = "number" name = "contractmoney"><br>
+
+	  カテゴリ:<select name="category">
+		@for(cat <- categories){
+			<option value = @cat >@cat</option>
+		}
+	  </select><br>
+	  
+  	  募集終了日時: <input type = "date" name = "boshu_shuryo"><br>
+
+	  <input type = "hidden" value = "1" name = "status">
+	  <input type = "submit">
+	</form>  
+    
+}

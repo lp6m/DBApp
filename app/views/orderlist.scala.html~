@@ -1,0 +1,16 @@
+@(Tasklist :List[Task], ApplicantsOfMyTask : List[List[Registrant]])
+@main("発注した仕事一覧"){
+<h1> 発注した仕事一覧</h1>
+   <table border = "1">
+	 <tr>
+	   <th> 仕事 </th>
+	   <
+	 </tr>
+	 @for(t <- Tasklist){
+			   <tr>
+				 <th> <a hred = @{"/jobpage/"+t.taskid.toString}> @t.title </a> </th>
+			   </tr>  
+	 }
+    </table>
+
+}

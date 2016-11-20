@@ -1,0 +1,16 @@
+@(loginForm: Form[forms.LoginForm])
+
+
+
+@main("LoginPage"){
+
+    @helper.form(action = routes.Application.authenticate){
+
+	@(helper.inputText(field = loginForm("username")))
+	@(helper.inputPassword(field = loginForm("password")))
+	
+    <input type = "submit" >
+
+    }
+
+}

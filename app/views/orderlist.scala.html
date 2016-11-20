@@ -1,0 +1,28 @@
+@(t :List[Task], reg :List[List[Registrant]])
+@main("発注した仕事一覧"){
+<h1> 発注した仕事一覧</h1>
+<ul>
+  @for(i <- 0 until t.size){
+		<li> <a href = @{"/jobpage/"+t.get(i).taskid.toString}> @t.get(i).title </a> </li>
+		<table border = "1" class="table table-hover">
+		  <tr>
+			<th> 応募者 </th>
+		  </tr>
+		  @for(member <- reg.get(i)){
+		  <tr>
+			<th> @member.screenname  </th>
+		  </tr>
+		  }
+		</table>
+		@helper.form(action = routes.Application.adoption){
+		  <select name = "workerid">
+			@for(member <- reg.get(i)){
+				<option value = @member.id>@member.screenname </option>
+			}
+	      </select>
+		  <input type = "submit" value = "採用">
+		}  
+}
+</ul>
+
+}

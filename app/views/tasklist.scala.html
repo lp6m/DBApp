@@ -1,0 +1,55 @@
+@(msg:String, Tasklist :List[Task], categories: List[String], sform: Form[Application.TaskSearchForm])
+@import play.libs.Scala
+@main("Sample Page"){
+    <h1>Hello!</h1>
+    <p>@msg</p>
+	<p>@{Tasklist.length}件の案件が見つかりました.</p>
+	<p>カテゴリを選択</p>
+	@helper.form(action = routes.Application.TaskList){
+	@(helper.select(field = sform("category"), options = play.libs.Scala.toSeq(Groups.data).map(k => (k,k))))
+	<input value = "このカテゴリを検索" type = "submit">
+	}
+	
+	<hr>
+	<p>仕事一覧</p>
+    <table border = "1" class="table table-hover">
+	  <tr>
+		<th> 発注者ID </th>
+		<th> 受注者ID </th>
+		<th> タイトル </th>
+		<th> 説明 </th>
+		<th> 契約金 </th>
+		<th> 状態 </th>
+		<th> カテゴリ</th>
+		<th> 募集開始時刻 </th>
+		<th> 募集終了時刻 </th>
+		<th> 契約確定時刻 </th>
+		<th> 納品完了時刻 </th>
+	  </tr>
+	  @for(t <- Tasklist){
+		<tr>
+		  <th> @t.employerid </th>
+		  <th> @t.workerid </th>
+		  <th> <a href = @{"/jobpage/"+ t.taskid.toString}> @t.title </a> </th>
+		  <th> @t.introduction </th>
+		  <th> @t.contractmoney </th>
+		  <th> @t.status </th>
+		  <th> @t.category </th>
+		  <th> @t.boshu_kaishi </th>
+		  <th> @t.boshu_shuryo </th>
+		  <th> @t.keiyaku_kakutei </th>
+		  <th> @t.nouhin_kanryo </th>
+	    </tr>
+	   }
+
+		<hr>
+		
+		<form action = "/maketask">
+		  <input type = "submit" value = "ランダムデータ作成">
+       </form>
+        <br>
+		<form action = "/scraping">
+		  <input type = "submit" value = "CrowdWorks同期">
+		</form>
+
+}
