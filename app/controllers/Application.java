@@ -155,17 +155,6 @@ public class Application extends Controller {
 		public String category = "";
 		public String searchstr = "";
 	}
-	public static List<Task> DoSubStrToTask(List<Task> l){
-		List<Task> rst = null;
-		for(int i = 0; i < l.size(); i++){
-			Task t = l.get(i);
-			if(t.introduction.length() > 50){
-				t.introduction = t.introduction.substring(0,50);
-			}
-			rst.add(t);
-		}
-		return rst;
-	}
 	public static Result TaskList() {
 		Form<TaskSearchForm> f = new Form<TaskSearchForm>(TaskSearchForm.class).bindFromRequest();
 		if(!f.hasErrors() && f.get().category != ""){
